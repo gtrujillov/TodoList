@@ -12,14 +12,17 @@ class ViewController: UIViewController {
     
     //Lista de tareas
     var listaDeTareas = [Tarea]()
+    // Asignamos el contexto de persistencia del contenedor de la aplicación a la variable "context"
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBOutlet weak var tablaTareas: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Establecemos el delegado y el origen de datos de la tabla "tablaTareas" como si misma
         tablaTareas.delegate = self
         tablaTareas.dataSource = self
+        /*La línea de código establece el delegado y el origen de datos de una tabla llamada "tablaTareas" como si misma, lo que significa que la clase en la que se encuentra este código será la encargada de proporcionar y manejar la información mostrada en la tabla, así como recibir y manejar eventos generados por la tabla.*/
         
         //Cuando la app carga, llama al metodo leerTareas para recuperar los datos
         leerTareas()
