@@ -135,4 +135,17 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let accionEliminar = UIContextualAction(style: .normal, title: "Eliminar") { _, _, _ in
+            self.context.delete(self.listaDeTareas[indexPath.row])
+            self.listaDeTareas.remove(at: indexPath.row)
+            
+            //Guardamos los cambios en la base de datos
+            self.guardar()
+        }
+        //Color al eliminar elemento
+        accionEliminar.backgroundColor = .red
+        return UISwipeActionsConfiguration(actions: [accionEliminar])
+    }
+    
 }
