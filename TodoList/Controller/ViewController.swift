@@ -10,8 +10,8 @@ import CoreData
 
 class ViewController: UIViewController {
     
+    //Lista de tareas
     var listaDeTareas = [Tarea]()
-    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBOutlet weak var tablaTareas: UITableView!
