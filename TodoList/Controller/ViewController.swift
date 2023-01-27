@@ -22,6 +22,7 @@ class ViewController: UIViewController {
         tablaTareas.dataSource = self
         
         //Cuando la app carga, llama al metodo leerTareas para recuperar los datos
+        leerTareas()
         
     }
     

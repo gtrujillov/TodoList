@@ -60,14 +60,38 @@
 			children = (
 				8F28769C29843AAF00413DA9 /* AppDelegate.swift */,
 				8F28769E29843AAF00413DA9 /* SceneDelegate.swift */,
-				8F2876A029843AAF00413DA9 /* ViewController.swift */,
-				8F2876A229843AAF00413DA9 /* Main.storyboard */,
+				8F2E89402984604D00C2BC5B /* Data Model */,
+				8F2E893F2984602D00C2BC5B /* View */,
+				8F2E893E2984601E00C2BC5B /* Controller */,
 				8F2876A829843AB100413DA9 /* Assets.xcassets */,
 				8F2876AA29843AB100413DA9 /* LaunchScreen.storyboard */,
 				8F2876AD29843AB100413DA9 /* Info.plist */,
-				8F2876A529843AAF00413DA9 /* TodoList.xcdatamodeld */,
 			);
 			path = TodoList;
+			sourceTree = "<group>";
+		};
+		8F2E893E2984601E00C2BC5B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8F2876A029843AAF00413DA9 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8F2E893F2984602D00C2BC5B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8F2876A229843AAF00413DA9 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8F2E89402984604D00C2BC5B /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				8F2876A529843AAF00413DA9 /* TodoList.xcdatamodeld */,
+			);
+			path = "Data Model";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
