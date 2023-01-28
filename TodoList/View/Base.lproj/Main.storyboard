@@ -9,6 +9,38 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Categoria Table View Controller-->
+        <scene sceneID="7av-C7-5e3">
+            <objects>
+                <tableViewController id="Cgq-vG-B98" customClass="CategoriaTableViewController" customModule="TodoList" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="k2p-5j-Y8Y">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoriaCell" id="yXS-rn-5KY">
+                                <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yXS-rn-5KY" id="moq-AR-51z">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Cgq-vG-B98" id="Ivb-Ka-jl8"/>
+                            <outlet property="delegate" destination="Cgq-vG-B98" id="9O5-vb-YSV"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="AHe-hY-tmr"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="goToTareas" id="14u-KP-UXz"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iRm-Y1-vt9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="501.52671755725191" y="3.5211267605633805"/>
+        </scene>
         <!--Lista de tareas -->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -24,9 +56,17 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="748" id="d0f-qM-tXE"/>
                                     <constraint firstAttribute="width" constant="393" id="srU-0v-tTG"/>
                                 </constraints>
+                                <searchBar key="tableHeaderView" contentMode="redraw" id="4AD-wh-nCt">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="BYZ-38-t0r" id="RYB-xU-mPm"/>
+                                    </connections>
+                                </searchBar>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="PqZ-k6-wIe" detailTextLabel="iWh-Bh-baQ" imageView="lRM-Y2-bbb" style="IBUITableViewCellStyleSubtitle" id="go5-8B-cgQ">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="62.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="94" width="393" height="62.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="go5-8B-cgQ" id="nBW-jl-dPa">
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="62.666667938232422"/>
@@ -82,7 +122,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1066.4122137404579" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="1317" y="4"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GWL-bh-Yoa">
@@ -95,12 +135,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="uqU-VJ-Yd4"/>
+                        <segue destination="Cgq-vG-B98" kind="relationship" relationship="rootViewController" id="q3I-i6-8Na"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ww8-KT-k5B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139.69465648854961" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="-321" y="4"/>
         </scene>
     </scenes>
     <resources>

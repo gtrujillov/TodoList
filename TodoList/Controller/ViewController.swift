@@ -25,7 +25,8 @@ class ViewController: UIViewController {
         /*La línea de código establece el delegado y el origen de datos de una tabla llamada "tablaTareas" como si misma, lo que significa que la clase en la que se encuentra este código será la encargada de proporcionar y manejar la información mostrada en la tabla, así como recibir y manejar eventos generados por la tabla.*/
         
         //Cuando la app carga, llama al metodo leerTareas para recuperar los datos
-        leerTareas()
+        let solicitud : NSFetchRequest<Tarea> = Tarea.fetchRequest()
+        leerTareas(with: solicitud)
         
     }
     
@@ -68,38 +69,28 @@ class ViewController: UIViewController {
     
     // Esta función guarda los cambios en el contexto de Core Data
     func guardar(){
-        // Se utiliza un do-catch para manejar errores al momento de guardar los cambios
         do{
             // Se intenta guardar los cambios en el contexto
             try context.save()
         }catch{
-            // Si ocurre un error al momento de guardar, se imprime el error en consola
             print("Error guardando los cambios \(error)")
         }
-        
         // Se actualiza la tabla de tareas para reflejar los cambios
         self.tablaTareas.reloadData()
     }
     
     // Esta función lee las tareas almacenadas en Core Data
-    func leerTareas(){
-        // Se crea una solicitud para leer entidades de tipo Tarea
-        let solicitud : NSFetchRequest<Tarea> =  Tarea.fetchRequest()
-        
-        // Se utiliza un do-catch para manejar errores al momento de leer los datos
+    func leerTareas(with solicitud: NSFetchRequest<Tarea>){
         do {
             // Se intenta leer las tareas mediante la solicitud creada
             listaDeTareas = try context.fetch(solicitud)
         }catch{
-            // Si ocurre un error al momento de leer, se imprime el error en consola
             print("Error solicitando los datos \(error.localizedDescription)")
         }
     }
-    
-    
 }
 
-
+//MARK: - Extension para controlar las acciones de la tabla
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listaDeTareas.count
@@ -153,3 +144,35 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
 }
+
+//MARK: - Extension para controlar las acciones de la barra de búsqueda
+extension ViewController: UISearchBarDelegate {
+    
+    //funcion para buscar elementos en la lista
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        // Se crea una solicitud para leer entidades de tipo Tarea
+        let solicitud : NSFetchRequest<Tarea> =  Tarea.fetchRequest()
+        // Crea un predicado que filtre los resultados según el texto ingresado en la barra de búsqueda.
+        solicitud.predicate = NSPredicate(format: "title CONTAINS[cd] %@" , searchBar.text!)
+        
+        let ordenDeElementos = NSSortDescriptor(key: "title", ascending: true)
+        let resultadosOrdenados = listaDeTareas.sorted(by: { ($0.title ?? "") < ($1.title ?? "") })
+        
+        leerTareas(with: solicitud)
+        tablaTareas.reloadData()
+    }
+    
+    //funcion para volver a la lista inicial de elementos
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        // Se crea una solicitud para leer entidades de tipo Tarea
+        let solicitud : NSFetchRequest<Tarea> =  Tarea.fetchRequest()
+        if searchBar.text?.count == 0 {
+            leerTareas(with: solicitud)
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+        }
+        tablaTareas.reloadData()
+    }
+}
+
